@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> CONTACT Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f9;
+        }
+        .container {
+            background-color:  rgba(225, 205, 221, 0.804);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 90%;
+            max-width: 600px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        h2 {
+            color: #333;
+            font-size: 20px;
+            margin-top: 20px;
+        }
+        .info-section {
+            margin-bottom: 20px;
+        }
+        .info-label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .btn-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1><u>ESSENTIAL CONTACT INFORMATION</u></h1>
+
+        <form>
+            <div class="info-section">
+                <h2>DOCTOR'S INFORMATION</h2>
+                <label for="doctor-name" class="info-label">Doctor's Name:</label>
+                <input type="text" id="doctor-name" name="doctor-name" placeholder="Enter doctor's name" required>
+                
+                <label for="doctor-phone" class="info-label">Phone Number:</label>
+                <input type="text" id="doctor-phone" name="doctor-phone" placeholder="Enter doctor's phone number" required>
+            </div>
+
+            <div class="info-section">
+                <h2>HOSPITAL INFORMATION</h2>
+                <label for="hospital-name" class="info-label">Hospital Name:</label>
+                <input type="text" id="hospital-name" name="hospital-name" placeholder="Enter hospital name" required>
+                
+                <label for="hospital-phone" class="info-label">Hospital Phone Number:</label>
+                <input type="text" id="hospital-phone" name="hospital-phone" placeholder="Enter hospital phone number" required>
+            </div>
+
+            <div class="info-section">
+                <h2>EMERGENCY CONTACT</h2>
+                <label for="emergency-name" class="info-label">Contact Name:</label>
+                <input type="text" id="emergency-name" name="emergency-name" placeholder="Enter emergency contact name" required>
+                
+                <label for="emergency-phone" class="info-label">Phone Number:</label>
+                <input type="text" id="emergency-phone" name="emergency-phone" placeholder="Enter emergency contact phone number" required>
+            </div>
+
+            <div class="btn-container">
+                <button type="submit">Submit Information</button>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

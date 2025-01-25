@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicine Reminder App</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ccecf2 0%, #ccecf2 100%);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #333333;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 14px;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        input[type="date"],
+        input[type="time"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            justify-content: space-around;
+            margin: 10px 0;
+        }
+
+        .checkbox-group label {
+            font-size: 14px;
+            font-weight: normal;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .summary {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        .summary p {
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .time-picker {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Medicine Reminder</h2>
+
+        <!-- Select Start Date -->
+        <div class="form-group">
+            <label for="startDate">Start Date:</label>
+            <input type="date" id="startDate" required>
+        </div>
+
+        <!-- Select End Date -->
+        <div class="form-group">
+            <label for="endDate">End Date:</label>
+            <input type="date" id="endDate" required>
+        </div>
+
+        <!-- Select Dosage Time -->
+        <div class="form-group">
+            <label>Dosage Time:</label>
+            <div class="checkbox-group">
+                <label><input type="checkbox" id="morning"> Morning</label>
+                <label><input type="checkbox" id="afternoon"> Afternoon</label>
+                <label><input type="checkbox" id="evening"> Evening</label>
+            </div>
+        </div>
+
+        <!-- Time Selection for Dosage -->
+        <div id="morning-time" class="time-picker" style="display: none;">
+            <label for="morningTime">Select Morning Time:</label>
+            <input type="time" id="morningTime">
+        </div>
+        <div id="afternoon-time" class="time-picker" style="display: none;">
+            <label for="afternoonTime">Select Afternoon Time:</label>
+            <input type="time" id="afternoonTime">
+        </div>
+        <div id="evening-time" class="time-picker" style="display: none;">
+            <label for="eveningTime">Select Evening Time:</label>
+            <input type="time" id="eveningTime">
+        </div>
+
+        <!-- Set Reminder Button -->
+        <button onclick="setReminder()">Set Reminder</button>
+
+        <!-- Reminder Summary -->
+        <div id="summary" class="summary" style="display: none;">
+            <h3>Reminder Details</h3>
+            <p id="summaryText"></p>
+        </div>
+    </div>
+
+    <script>
+        // Show the time picker based on selected dosage time
+        document.getElementById('morning').addEventListener('change', function() {
+            document.getElementById('morning-time').style.display = this.checked ? 'block' : 'none';
+        });
+        document.getElementById('afternoon').addEventListener('change', function() {
+            document.getElementById('afternoon-time').style.display = this.checked ? 'block' : 'none';
+        });
+        document.getElementById('evening').addEventListener('change', function() {
+            document.getElementById('evening-time').style.display = this.checked ? 'block' : 'none';
+        });
+
+        // Function to play the alarm sound
+        function playAlarm() {
+            let alarmSound = new Audio('synthesized-audio_RnhveKxY.mp3'); // Example beep sound
+            alarmSound.play();
+            alert("It's time to take your medicine!");
+        }
+
+        // Function to calculate time difference and trigger the alarm at the right time
+        function setReminder() {
+            const startDate = document.getElementById('startDate').value;
+            const endDate = document.getElementById('endDate').value;
+
+            const morning = document.getElementById('morning').checked;
+            const afternoon = document.getElementById('afternoon').checked;
+            const evening = document.getElementById('evening').checked;
+
+            const morningTime = document.getElementById('morningTime').value;
+            const afternoonTime = document.getElementById('afternoonTime').value;
+            const eveningTime = document.getElementById('eveningTime').value;
+
+            // Validate input fields
+            if (!startDate || !endDate || (!morning && !afternoon && !evening)) {
+                alert("Please fill all fields and select at least one dosage time.");
+                return;
+            }
+
+            let reminderTimes = [];
+            if (morning && morningTime) {
+                reminderTimes.push(${startDate}T${morningTime});
+            }
+            if (afternoon && afternoonTime) {
+                reminderTimes.push(${startDate}T${afternoonTime});
+            }
+            if (evening && eveningTime) {
+                reminderTimes.push(${startDate}T${eveningTime});
+            }
+
+            // Display Summary
+            const summary = document.getElementById('summary');
+            const summaryText = document.getElementById('summaryText');
+            summary.style.display = "block";
+            summaryText.innerHTML = `
+                <strong>Start Date:</strong> ${startDate}<br>
+                <strong>End Date:</strong> ${endDate}<br>
+                <strong>Dosage Times:</strong> ${reminderTimes.join(', ')}
+            `;
+
+            alert("Reminder has been set!");
+
+            // Schedule alarms for each reminder time
+            reminderTimes.forEach(timeStr => {
+                const reminderTime = new Date(timeStr);
+                const currentTime = new Date();
+
+                // Calculate the difference in milliseconds
+                const timeDifference = reminderTime.getTime() - currentTime.getTime();
+
+                if (timeDifference > 0) {
+                    // Schedule the alarm at the exact time
+                    setTimeout(playAlarm, timeDifference);
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
