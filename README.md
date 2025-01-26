@@ -11,7 +11,7 @@
 - Member 3: V GAYATHRI - LBSITW
 
 ### Hosted Project Link
-https://github.com/devikrishna111/MedCare.git"
+https://med-care-three.vercel.app/
 
 ### Project Description
 A mobile and web application designed to help users manage their medication schedules, ensuring timely and accurate medication intake.
