@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Medication Information</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            max-width: 800px; 
+            margin: 0 auto; 
+            padding: 20px; 
+            text-align: center; 
+            background-color:white;
+        }
+        h1 { color: #2c3e50; }
+        .medication-box {
+            border: 2px solid #2c3e50;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            background-color: rgba(225, 205, 221, 0.804);
+            width: 100%;
+        }
+        .select-text {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #2c3e50;
+            font-weight: bold;
+            text-align: left;
+        }
+        .medication-type { 
+            display: flex; 
+            justify-content: space-around; 
+            margin: 20px 0; 
+            align-items: center;
+        }
+        .medication-portal {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .medication-portal img { 
+            width: 80px; 
+            height: 80px; 
+            object-fit: cover; 
+            margin-bottom: 10px;
+        }
+        .medication-portal label { 
+            display: flex; 
+            align-items: center; 
+        }
+        .form-section { display: flex; flex-direction: column; align-items: center; }
+        .form-group { margin: 10px 0; width: 300px; text-align: center; display: none; }
+        .form-group label { display: block; text-align: left; }
+        .form-group input { width: 100%; padding: 5px; text-align: center; }
+        .btn-next {
+            margin-top: 20px;
+            padding: 8px 16px;
+            background-color: #2c3e50;
+            color:rgba(225, 205, 221, 0.804);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            pointer-events: none; /* Disable the button initially */
+            opacity: 0.5; /* Make it look disabled */
+        }
+        .btn-next.enabled {
+            pointer-events: auto; /* Enable button when form is valid */
+            opacity: 1; /* Make it look active */
+        }
+        .shape-options {
+            display: flex;
+            justify-content: space-evenly;
+            width: 100%;
+            margin-top: 10px;
+        }
+        .shape-options label {
+            display: flex;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="medication-box">
+        <h1>ADD MEDICATION</h1>
+        <div class="select-text">Select</div>
+        
+        <div class="medication-type">
+            <div class="medication-portal">
+                <img src="/tablet1.jpg" alt="Tablet">
+                <label>
+                    <input type="radio" name="medication-category" value="tablet" onclick="showFields('tablet')">
+                    Tablet
+                </label>
+            </div>
+            <div class="medication-portal">
+                <img src="/capsule.jpeg" alt="Capsule">
+                <label>
+                    <input type="radio" name="medication-category" value="capsule" onclick="showFields('capsule')">
+                    Capsule
+                </label>
+            </div>
+            <div class="medication-portal">
+                <img src="/injection1.jpeg" alt="Injection">
+                <label>
+                    <input type="radio" name="medication-category" value="injection" onclick="showFields('injection')">
+                    Injection
+                </label>
+            </div>
+            <div class="medication-portal">
+                <img src="/drops.jpeg" alt="Drops">
+                <label>
+                    <input type="radio" name="medication-category" value="drops" onclick="showFields('drops')">
+                    Drops
+                </label>
+            </div>
+            <div class="medication-portal">
+                <img src="/liquid.jpg" alt="Liquid">
+                <label>
+                    <input type="radio" name="medication-category" value="liquid" onclick="showFields('liquid')">
+                    Liquid
+                </label>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <!-- Tablet Fields -->
+            <div class="form-group tablet-fields">
+                <label>Name:</label>
+                <input type="text" required id="tablet-name" oninput="enableNext('tablet')">
+            </div>
+            <div class="form-group tablet-fields">
+                <label>Shape:</label>
+                <input type="text" required id="tablet-shape" oninput="enableNext('tablet')">
+                <div class="shape-options">
+                    <label>
+                        <input type="radio" name="shape" value="round" onclick="updateShape('Round')">
+                        Round
+                    </label>
+                    <label>
+                        <input type="radio" name="shape" value="oval" onclick="updateShape('Oval')">
+                        Oval
+                    </label>
+                </div>
+            </div>
+            <div class="form-group tablet-fields">
+                <label>Size:</label>
+                <input type="text" required id="tablet-size" oninput="enableNext('tablet')">
+            </div>
+            <div class="form-group tablet-fields">
+                <label>Color:</label>
+                <input type="text" required id="tablet-color" oninput="enableNext('tablet')">
+            </div>
+            <div class="form-group tablet-fields">
+                <label>Dose:</label>
+                <input type="text" required id="tablet-dose" oninput="enableNext('tablet')">
+            </div>
+            <div class="form-group tablet-fields">
+                <label>Other Information:</label>
+                <input type="text" required id="tablet-other" oninput="enableNext('tablet')">
+            </div>
+            <!-- Link to next page after other information -->
+            <div class="form-group tablet-fields">
+                <a href="alarm.html" class="btn-next" id="tablet-next">Next</a>
+            </div>
+
+            <!-- Capsule Fields -->
+            <div class="form-group capsule-fields">
+                <label>Name:</label>
+                <input type="text" required id="capsule-name" oninput="enableNext('capsule')">
+            </div>
+            <div class="form-group capsule-fields">
+                <label>Color:</label>
+                <input type="text" required id="capsule-color" oninput="enableNext('capsule')">
+            </div>
+            <div class="form-group capsule-fields">
+                <label>Dose:</label>
+                <input type="text" required id="capsule-dose" oninput="enableNext('capsule')">
+            </div>
+            <div class="form-group capsule-fields">
+                <label>Other Information:</label>
+                <input type="text" required id="capsule-other" oninput="enableNext('capsule')">
+            </div>
+            <!-- Link to next page after other information -->
+            <div class="form-group capsule-fields">
+                <a href="alarm.html" class="btn-next" id="capsule-next">Next</a>
+            </div>
+
+            <!-- Injection Fields -->
+            <div class="form-group injection-fields">
+                <label>Name:</label>
+                <input type="text" required id="injection-name" oninput="enableNext('injection')">
+            </div>
+            <div class="form-group injection-fields">
+                <label>Dose:</label>
+                <input type="text" required id="injection-dose" oninput="enableNext('injection')">
+            </div>
+            <div class="form-group injection-fields">
+                <label>Other Information:</label>
+                <input type="text" required id="injection-other" oninput="enableNext('injection')">
+            </div>
+            <!-- Link to next page after other information -->
+            <div class="form-group injection-fields">
+                <a href="alarm.html" class="btn-next" id="injection-next">Next</a>
+            </div>
+
+            <!-- Drops Fields -->
+            <div class="form-group drops-fields">
+                <label>Name:</label>
+                <input type="text" required id="drops-name" oninput="enableNext('drops')">
+            </div>
+            <div class="form-group drops-fields">
+                <label>Dose:</label>
+                <input type="text" required id="drops-dose" oninput="enableNext('drops')">
+            </div>
+            <div class="form-group drops-fields">
+                <label>Other Information:</label>
+                <input type="text" required id="drops-other" oninput="enableNext('drops')">
+            </div>
+            <!-- Link to next page after other information -->
+            <div class="form-group drops-fields">
+                <a href="alarm.html" class="btn-next" id="drops-next">Next</a>
+            </div>
+
+            <!-- Liquid Fields -->
+            <div class="form-group liquid-fields">
+                <label>Name:</label>
+                <input type="text" required id="liquid-name" oninput="enableNext('liquid')">
+            </div>
+            <div class="form-group liquid-fields">
+                <label>Color:</label>
+                <input type="text" required id="liquid-color" oninput="enableNext('liquid')">
+            </div>
+            <div class="form-group liquid-fields">
+                <label>Dose:</label>
+                <input type="text" required id="liquid-dose" oninput="enableNext('liquid')">
+            </div>
+            <div class="form-group liquid-fields">
+                <label>Other Information:</label>
+                <input type="text" required id="liquid-other" oninput="enableNext('liquid')">
+            </div>
+            <!-- Link to next page after other information -->
+            <div class="form-group liquid-fields">
+                <a href="alarm.html" class="btn-next" id="liquid-next">Next</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showFields(medicationType) {
+            const allFields = document.querySelectorAll('.form-group');
+            allFields.forEach(field => field.style.display = 'none');  // Hide all fields
+            
+            if (medicationType === 'tablet') {
+                document.querySelectorAll('.tablet-fields').forEach(field => field.style.display = 'block');
+            } else if (medicationType === 'capsule') {
+                document.querySelectorAll('.capsule-fields').forEach(field => field.style.display = 'block');
+            } else if (medicationType === 'injection') {
+                document.querySelectorAll('.injection-fields').forEach(field => field.style.display = 'block');
+            } else if (medicationType === 'drops') {
+                document.querySelectorAll('.drops-fields').forEach(field => field.style.display = 'block');
+            } else if (medicationType === 'liquid') {
+                document.querySelectorAll('.liquid-fields').forEach(field => field.style.display = 'block');
+            }
+        }
+
+        function updateShape(shape) {
+            document.getElementById('tablet-shape').value = shape;
+        }
+
+        // Enable the Next button when all fields are filled
+        function enableNext(medicationType) {
+            let allFilled = true;
+            const fields = document.querySelectorAll(`.${medicationType}-fields input`);
+            fields.forEach(field => {
+                if (!field.value) {
+                    allFilled = false;
+                }
+            });
+
+            const nextButton = document.getElementById(`${medicationType}-next`);
+            if (allFilled) {
+                nextButton.classList.add('enabled');
+                nextButton.removeAttribute('style');
+            } else {
+                nextButton.classList.remove('enabled');
+                nextButton.style.pointerEvents = 'none';
+                nextButton.style.opacity = '0.5';
+            }
+        }
+    </script>
+</body>  
+</html>
+
+
+

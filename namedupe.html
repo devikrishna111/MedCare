@@ -1,0 +1,234 @@
+<<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up Page</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('.png');
+            background-color: #f9f9f9; /* Light background with floral pattern */
+            color: #eaeddd;
+        }
+
+        .container {
+            background:  rgb(204, 236, 242);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+            box-sizing: border-box;
+        }
+
+        h2 {
+            text-align: center;
+            color:  rgb(204, 236, 242);
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            background: #f8f9fa;
+            color: #333;
+            transition: border-color 0.3s;
+        }
+
+        .form-input:focus {
+            border-color: #000;
+            outline: none;
+        }
+
+        .gender-container {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+        }
+
+        .gender-container label {
+            color: #333;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+
+        .form-header {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        .button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            background-color:  rgb(18, 60, 104);
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #444;
+        }
+
+        .back-button {
+            display: block;
+            margin-top: 15px;
+            text-align: center;
+            color: #000;
+            font-size: 16px;
+            text-decoration: none;
+        }
+
+        .back-button:hover {
+            text-decoration: underline;
+        }
+
+        .submit-textfield {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            background-color: #12385e;
+            text-align: center;
+            color: rgb(18, 60, 104);
+            font-size: 18px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .submit-textfield a {
+            text-decoration: none;
+            color: rgb(255, 255, 255);
+        }
+
+        .submit-textfield:hover {
+            background-color: #152f56;
+            border-color: #000;
+        }
+
+        .submit-textfield a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Sign Up</h2>
+
+        <!-- Sign Up Form -->
+        <div class="form-header">Enter your details</div>
+        
+        <input type="text" class="form-input" id="name" placeholder="Name" required>
+        <input type="tel" class="form-input" id="mobile" placeholder="Mobile Number" required>
+        <input type="date" class="form-input" id="dob" placeholder="Date of Birth" required>
+        <input type="email" class="form-input" id="email" placeholder="Email" required>
+
+        <div class="gender-container">
+            <label>Gender:</label>
+            <div>
+                <input type="radio" id="male" name="gender" value="male">
+                <label for="male">Male</label>
+            </div>
+            <div>
+                <input type="radio" id="female" name="gender" value="female">
+                <label for="female">Female</label>
+            </div>
+            <div>
+                <input type="radio" id="other" name="gender" value="other">
+                <label for="other">Other</label>
+            </div>
+        </div>
+
+        <select class="form-input" id="country">
+            <option value="">Select Country</option>
+            <option value="India">India</option>
+            <option value="USA">USA</option>
+            <option value="UK">UK</option>
+            <option value="Canada">Canada</option>
+            <option value="Australia">Australia</option>
+        </select>
+
+        <select class="form-input" id="state">
+            <option value="">Select State</option>
+            <option value="Kerala">Kerala</option>
+            <option value="Tamil Nadu">Tamil Nadu</option>
+            <option value="Karnataka">Karnataka</option>
+        </select>
+
+        <select class="form-input" id="district">
+            <option value="">Select District</option>
+            <option value="Alappuzha">Alappuzha</option>
+            <option value="Ernakulam">Ernakulam</option>
+            <option value="Kochi">Kochi</option>
+            <option value="Kottayam">Kottayam</option>
+            <option value="Thiruvananthapuram">Thiruvananthapuram</option>
+            <option value="Malappuram">Malappuram</option>
+            <option value="Thrissur">Thrissur</option>
+            <option value="Kozhikode">Kozhikode</option>
+        </select>
+
+        <input type="password" class="form-input" id="password" placeholder="Password" required>
+
+        <!-- Submit Button inside Text Field with a Link -->
+        <div class="submit-textfield">
+            <a href="javascript:void(0);" onclick="submitSignUp()">Submit</a>
+        </div>
+
+        <a class="back-button" href="logindupe.html">Back to Home</a>
+    </div>
+
+    <script>
+        function submitSignUp() {
+            const name = document.getElementById('name').value;
+            const mobile = document.getElementById('mobile').value;
+            const dob = document.getElementById('dob').value;
+            const email = document.getElementById('email').value;
+            const country = document.getElementById('country').value;
+            const state = document.getElementById('state').value;
+            const district = document.getElementById('district').value;
+            const password = document.getElementById('password').value;
+            const gender = document.querySelector('input[name="gender"]:checked')?.value;
+
+            if (name && mobile && dob && email && country && state && district && password && gender) {
+                // If all fields are filled, allow navigation
+                window.location.href = "medinfodupe.html"; // Navigates to the next page
+            } else {
+                // If not all fields are filled, show an alert
+                alert('Please fill in all fields');
+            }
+        }
+    </script>
+
+</body>
+</html>
+
