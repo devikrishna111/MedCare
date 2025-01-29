@@ -98,6 +98,11 @@
         .time-picker {
             margin-top: 10px;
         }
+
+        /* Hide the Next button when JavaScript is not used */
+        #capsule-next {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -144,8 +149,12 @@
         <!-- Set Reminder Button -->
         <button onclick="setReminder()">Set Reminder</button>
         <br>
+
+        <!-- Next Button -->
         <div class="form-group capsule-fields">
-            <a href="ess.html" class="btn-next" id="capsule-next">Next</a>
+            <a href="essinfo.html" class="btn-next" id="capsule-next">
+                <button>Next</button>
+            </a>
         </div>
 
         <!-- Reminder Summary -->
@@ -159,20 +168,33 @@
         // Show the time picker based on selected dosage time
         document.getElementById('morning').addEventListener('change', function() {
             document.getElementById('morning-time').style.display = this.checked ? 'block' : 'none';
+            if (this.checked && document.getElementById('morningTime').value) {
+                document.getElementById('morning-time').querySelector('input').value = document.getElementById('morningTime').value;
+            }
         });
         document.getElementById('afternoon').addEventListener('change', function() {
             document.getElementById('afternoon-time').style.display = this.checked ? 'block' : 'none';
+            if (this.checked && document.getElementById('afternoonTime').value) {
+                document.getElementById('afternoon-time').querySelector('input').value = document.getElementById('afternoonTime').value;
+            }
         });
         document.getElementById('evening').addEventListener('change', function() {
             document.getElementById('evening-time').style.display = this.checked ? 'block' : 'none';
+            if (this.checked && document.getElementById('eveningTime').value) {
+                document.getElementById('evening-time').querySelector('input').value = document.getElementById('eveningTime').value;
+            }
         });
 
         // Function to play the alarm sound
         function playAlarm() {
-            let alarmSound = new Audio('synthesized-audio_RnhveKxY.mp3'); // Example beep sound
-            alarmSound.play();
-            alert("It's time to take your medicine!");
-        }
+    let alarmSound = new Audio('synthesized-audio_RnhveKxY.mp3');
+    
+    alarmSound.play(); // Play audio
+    setTimeout(function() {
+        alert("It's time to take your medicine!"); // Show the alert after a slight delay
+    }, 100); // 100 ms delay, you can adjust this value
+}
+
 
         // Function to calculate time difference and trigger the alarm at the right time
         function setReminder() {
@@ -195,13 +217,13 @@
 
             let reminderTimes = [];
             if (morning && morningTime) {
-                reminderTimes.push(${startDate}T${morningTime});
+                reminderTimes.push(`${startDate}T${morningTime}`);
             }
             if (afternoon && afternoonTime) {
-                reminderTimes.push(${startDate}T${afternoonTime});
+                reminderTimes.push(`${startDate}T${afternoonTime}`);
             }
             if (evening && eveningTime) {
-                reminderTimes.push(${startDate}T${eveningTime});
+                reminderTimes.push(`${startDate}T${eveningTime}`);
             }
 
             // Display Summary
@@ -229,6 +251,9 @@
                     setTimeout(playAlarm, timeDifference);
                 }
             });
+
+            // Show the "Next" button after setting the reminder
+            document.getElementById('capsule-next').style.display = 'inline-block';
         }
     </script>
 

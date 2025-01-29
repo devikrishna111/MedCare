@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customizable Capsules in Box</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+
+        .box {
+            border: 2px solid #333; /* Box border */
+            padding: 20px;
+            background-color: #fff; /* Box background */
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .shape {
+            margin: 0 auto;
+            display: block;
+            position: relative;
+        }
+
+        .capsule {
+            width: 250px;
+            height: 80px;
+            border-radius: 40px; /* Rounded ends create the capsule shape */
+        }
+
+        .split-capsule {
+            background: linear-gradient(to right, #009688 50%, #FF5722 50%); /* Split gradient */
+        }
+
+        .solid-capsule {
+            background-color: #009688; /* Solid color */
+        }
+
+        .customizer {
+            margin-top: 10px;
+        }
+
+        label {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1> Capsules </h1>
+
+    <!-- Container Box for both capsules -->
+    <div class="box">
+
+        <!-- Split Capsule Shape -->
+        <div class="shape capsule split-capsule" id="splitCapsule"></div>
+        <p>Split Capsule</p>
+        <div class="customizer">
+            <label for="capsuleColor1">Change Left Color: </label>
+            <input type="color" id="capsuleColor1" value="#009688" onchange="changeSplitColor()">
+            <br>
+            <label for="capsuleColor2">Change Right Color: </label>
+            <input type="color" id="capsuleColor2" value="#FF5722" onchange="changeSplitColor()">
+        </div>
+
+        <br>
+
+        <!-- Solid Capsule Shape -->
+        <div class="shape capsule solid-capsule" id="solidCapsule"></div>
+        <p>Solid Capsule</p>
+        <div class="customizer">
+            <label for="solidCapsuleColor">Change Solid Capsule Color: </label>
+            <input type="color" id="solidCapsuleColor" value="#009688" onchange="changeSolidColor()">
+        </div>
+
+    </div>
+
+    <script>
+        // Function to change the colors of the split capsule shape
+        function changeSplitColor() {
+            const color1 = document.getElementById('capsuleColor1').value;
+            const color2 = document.getElementById('capsuleColor2').value;
+            document.getElementById('splitCapsule').style.background = linear-gradient(to right, ${color1} 50%, ${color2} 50%);
+        }
+
+        // Function to change the color of the solid capsule shape
+        function changeSolidColor() {
+            const color = document.getElementById('solidCapsuleColor').value;
+            document.getElementById('solidCapsule').style.backgroundColor = color;
+        }
+    </script>
+
+</body>
+</html>
